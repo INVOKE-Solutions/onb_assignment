@@ -8,6 +8,10 @@ image = Image.open('calculator.png')
 
 st.image(image, caption='Calculator')
 
+base="dark"
+primaryColor="purple"
+
+
 def calculator():
     st.title("My First Project on Streamlit: Calculator")
 
