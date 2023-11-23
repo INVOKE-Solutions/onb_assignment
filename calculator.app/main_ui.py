@@ -1,13 +1,13 @@
 # calculator_app.py
-from calculator import add,subtract,multiply,divide
+from calculator import add,subtract,multiply,divide,exponential
 import streamlit as st
 
 def calculator():
-    st.title("Simple Calculator")
+    st.title("My First Project on Streamlit: Calculator")
 
     # Get user input
     num1 = st.number_input("Enter the first number:")
-    operation = st.selectbox("Select operation:", ["+", "-", "*", "/"])
+    operation = st.selectbox("Select operation:", ["+", "-", "*", "/","**"])
     num2 = st.number_input("Enter the second number:")
 
     # Perform calculation
@@ -23,6 +23,8 @@ def calculator():
             result = divide(num1,num2)
         else:
             st.error("Error: Division by zero")
+    elif operation == "**":
+        result = exponential(num1,num2)
 
     # Display result
     st.write("Result:", result)
