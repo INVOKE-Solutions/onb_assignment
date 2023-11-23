@@ -4,7 +4,7 @@ import streamlit as st
 
 from PIL import Image
 
-image = Image.open('calculator.png')
+image = Image.open('calculator.app\calculator.png')
 
 st.image(image, caption='Calculator')
 
