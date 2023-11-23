@@ -1,12 +1,18 @@
 # calculator_app.py
-from calculator import add,subtract,multiply,divide,exponential
+from calculator import add,subtract,multiply,divide,expo
 import streamlit as st
+
+from PIL import Image
+
+image = Image.open('calculator.png')
+
+st.image(image, caption='Calculator')
 
 def calculator():
     st.title("My First Project on Streamlit: Calculator")
 
     # Get user input
-    num1 = st.number_input("Enter the first number:")
+    num1 = st.number_input("Enter the first number:",min_value=0.00,step=0.01)
     operation = st.selectbox("Select operation:", ["+", "-", "*", "/","**"])
     num2 = st.number_input("Enter the second number:")
 
@@ -24,7 +30,7 @@ def calculator():
         else:
             st.error("Error: Division by zero")
     elif operation == "**":
-        result = exponential(num1,num2)
+        result = expo(num1,num2)
 
     # Display result
     st.write("Result:", result)
