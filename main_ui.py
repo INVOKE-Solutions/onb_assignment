@@ -35,26 +35,53 @@
 # if __name__ == '__main__':
 #     calculator()
 
-import streamlit as st
-import subprocess
+"""
+    Streamlit Simple Calculator.
 
-def run_calculator():
-    process = subprocess.Popen(["python", "calculator.py"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-    output, error = process.communicate()
+    Author: Putri Khalilah Kamaluddin
+    Date: 2023/12/05
+    Description: This file is used to launch a minimal streamlit web 
+	application. A simple calculator that calculates 2 numerical values with addition,
+    substraction, multiplication and division operator.
 
-    st.write("Output:")
-    st.write(output)
+	For further help with the Streamlit framework, see:
 
-    if error:
-        st.write("Error:")
-        st.write(error)
+	https://docs.streamlit.io/en/latest/
+"""
+
+#Streamlit depends 
+import streamlit as st #  pip install streamlit
+from calculator import addition, multiplication,division,substraction
 
 def main():
-    st.title("Streamlit Calculator")
 
-    st.write("Welcome to the Streamlit Calculator app!")
+    st.title("Simple Calculator")
+    st.write("Please choose which operation to perform:")
+    st.write("1. Addition\n2. Subtraction\n3. Multiplication\n4. Division")
 
-    run_calculator()
+    choice = st.number_input("Enter the operation number:", min_value=1, max_value=4, step=1)
 
-if __name__ == "__main__":
+    value_1 = st.number_input("Enter the first value:",key="value_1",placeholder='Type a number...')
+    value_2 = st.number_input("Enter the second value:",key ="value_2",placeholder='Type a number...')
+    result = 0
+
+    if choice == 1:
+        result = addition(value_1,value_2)
+    elif choice == 2:
+        result= substraction(value_1,value_2)
+    elif choice == 3:
+        result = multiplication(value_1,value_2)
+    elif choice == 4:
+        result = division(value_1,value_2)
+
+    st.write("The result is:", result)
+
+if __name__=='__main__':
     main()
+
+
+
+
+
+
+
