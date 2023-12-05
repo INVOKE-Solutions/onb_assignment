@@ -1,7 +1,9 @@
-# This script function to calculate numerical values that performs
-# addition, substraction, division and multiplication
-# This function accepts user input ie the 2 numerical values
-# and return the result value
+"""
+This script function to calculate numerical values that performs
+addition, substraction, division and multiplication
+This function accepts user input ie the 2 numerical values
+and return the result value
+"""
  
 # perform the addition function
 def addition(value_1,value_2):
