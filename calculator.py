@@ -3,10 +3,10 @@
 # This function accepts user input ie the 2 numerical values
 # and print out the result value
 
-# Prompt user to choose the operation.
+# Prompt user to choose the operation.  
 continue_calculator = 'y'
 
-while(continue_calculator == 'y'):
+while(continue_calculator.lower() == 'y'):
     print("Please choose which operation to perform:\n")
     print("1.Addition\n2.Substraction\n3.Multiplication\n4.Division")
     choice = int(input())
