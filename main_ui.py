@@ -14,7 +14,9 @@
 
 #Streamlit depends 
 import streamlit as st #  pip install streamlit
-from calculator import addition, multiplication,division,substraction
+#from calculator import addition, multiplication,division,substraction
+import json
+import requests
 
 def main():
 
@@ -37,15 +39,29 @@ def main():
     value_2 = st.number_input("Enter the second value:",key ="value_2", placeholder='Type a number...')
     result = 0
 
-    if choice == 1:
-        result = addition(value_1,value_2)
-    elif choice == 2:
-        result= substraction(value_1,value_2)
-    elif choice == 3:
-        result = multiplication(value_1,value_2)
-    elif choice == 4:
-        result = division(value_1,value_2)
+    inputs = {"value_1":value_1,"value_2":value_2}
 
+    try:
+        if choice == 1:
+            result = requests.post(url="http://127.0.0.1:8000/addition", data=json.dumps(inputs)).json()
+        elif choice == 2:
+            result = requests.post(url="http://127.0.0.1:8000/substraction", data=json.dumps(inputs)).json()
+        elif choice == 3:
+            result = requests.post(url="http://127.0.0.1:8000/multiplication", data=json.dumps(inputs)).json()
+        elif choice == 4:
+            result = requests.post(url="http://127.0.0.1:8000/division", data=json.dumps(inputs)).json()
+    except requests.exceptions.RequestException as e:
+        st.error(f"Error: {e}")
+        return
+
+    # if choice == 1:
+    #     result = requests.post(url = "http://127.0.0.1:8000/addition", data = json.dumps(inputs)).json
+    # elif choice == 2:
+    #     result = requests.post(url = "http://127.0.0.1:8000/substraction", data = json.dumps(inputs)).json
+    # elif choice == 3:
+    #     result = requests.post(url = "http://127.0.0.1:8000/multiplication", data = json.dumps(inputs)).json
+    # elif choice == 4:
+    #     result = requests.post(url = "http://127.0.0.1:8000/division", data = json.dumps(inputs)).json
     st.write("The result is:", result)
 
 if __name__=='__main__':
